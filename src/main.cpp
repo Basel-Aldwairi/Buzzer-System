@@ -42,6 +42,7 @@ void setup()
 
   // Serial for debugging
   Serial.begin(115200);
+  Serial.println();
 }
 
 void loop()
@@ -55,7 +56,7 @@ void loop()
 
     // 20221502065 -> 65 for he minimum delay
     int frequencyRead = analogRead(frequencyPotPin);
-    int delayTime = map(frequencyRead, 0, 4095, 65, 1000);
+    int delayTime = map(frequencyRead, 0, 4095, 1000, 65);
 
     // If delay is over (non-blocking)
     if (millis() - timer >= delayTime)
@@ -66,7 +67,7 @@ void loop()
         // Write to the buzzer
         analogWrite(buzzerPin, volume);
         // Debugging
-        Serial.printf("V : %d, F : %d, VR : %d\n", volume, delayTime, volumeRead);
+        Serial.printf("V : %d, D : %d\n", volume, delayTime);
       }
       else
       {
